@@ -1,24 +1,5 @@
-# @see https://nodesource.com/
+- name: nodejs
+  include: nodejs.yml
 
-- name: nodejs - install https support for apt
-  apt:
-    name: "apt-transport-https"
-    state: "present"
-
-- name: nodejs - add repository key
-  apt_key:
-    url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
-
-- name: nodejs - add repository
-  apt_repository:
-    repo: "{{ item }}"
-    state: present
-    update_cache: yes
-  with_items:
-    - "deb https://deb.nodesource.com/node_4.x {{ ansible_lsb.codename }} main"
-    - "deb-src https://deb.nodesource.com/node_4.x {{ ansible_lsb.codename }} main"
-
-- name: nodejs - install
-  apt:
-    name: "nodejs"
-    state: "present"
+- name: npm
+  include: npm.yml
