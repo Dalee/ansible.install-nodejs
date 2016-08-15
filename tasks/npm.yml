@@ -1,0 +1,18 @@
+- name: npm - remove original one
+  file:
+    path: "/usr/bin/npm"
+    state: "absent"
+
+- name: npm - create renamed original
+  file:
+    src: "/usr/lib/node_modules/npm/bin/npm-cli.js"
+    dest: "/usr/bin/npm-original"
+    state: "link"
+
+- name: npm - set fixed
+  template:
+    src: "npm_fixed.sh"
+    dest: "/usr/bin/npm"
+    owner: "root"
+    group: "root"
+    mode: 0755
