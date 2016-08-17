@@ -1,3 +1,3 @@
 # Node.JS
 
-Install LTS release of Node.JS
+Install 6.x release of Node.JS
