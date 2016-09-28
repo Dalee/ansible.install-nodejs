@@ -8,14 +8,12 @@
 - name: nodejs - add repository key
   apt_key:
     url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
-    validate_certs: no
 
 - name: nodejs - add repository
   apt_repository:
     repo: "{{ item }}"
     state: present
     update_cache: yes
-    validate_certs: no
   with_items:
     - "deb https://deb.nodesource.com/node_6.x {{ ansible_lsb.codename }} main"
     - "deb-src https://deb.nodesource.com/node_6.x {{ ansible_lsb.codename }} main"
