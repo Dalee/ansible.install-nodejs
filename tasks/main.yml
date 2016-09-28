@@ -8,6 +8,7 @@
 - name: nodejs - add repository key
   apt_key:
     url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+    validate_certs: False
 
 - name: nodejs - add repository
   apt_repository:
