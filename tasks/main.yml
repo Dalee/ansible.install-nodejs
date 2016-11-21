@@ -23,3 +23,16 @@
   apt:
     name: "nodejs"
     state: "present"
+
+# https://github.com/nodejs/node-gyp/issues/562
+# https://github.com/npm/npm/issues/3565#issuecomment-202473011
+#
+# /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/make.py
+# search: copy_archive_arguments = '-af'
+# replace: copy_archive_arguments = '-PRf'
+- name: nodejs - fix, operation not permitted
+  replace:
+    dest: "/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/make.py"
+    regexp: "copy_archive_arguments = '-af'"
+    replace: "copy_archive_arguments = '-PRf'"
+    backup: "yes"
