@@ -24,12 +24,18 @@
     name: "nodejs"
     state: "present"
 
+#
+# Fix bug, which prevent `npm install` on vagrant nfs volume
+#
+# @see:
 # https://github.com/nodejs/node-gyp/issues/562
 # https://github.com/npm/npm/issues/3565#issuecomment-202473011
 #
+# solution:
 # /usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/make.py
 # search: copy_archive_arguments = '-af'
 # replace: copy_archive_arguments = '-PRf'
+#
 - name: nodejs - fix, operation not permitted
   replace:
     dest: "/usr/lib/node_modules/npm/node_modules/node-gyp/gyp/pylib/gyp/generator/make.py"
