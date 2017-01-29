@@ -1,10 +1,5 @@
 # @see https://nodesource.com/
 
-- name: nodejs - install https support for apt
-  apt:
-    name: "apt-transport-https"
-    state: "present"
-
 - name: nodejs - add repository key
   apt_key:
     url: "http://deb.nodesource.com/gpgkey/nodesource.gpg.key"
@@ -14,10 +9,9 @@
     repo: "{{ item }}"
     state: present
     update_cache: yes
-    validate_certs: no
   with_items:
-    - "deb https://deb.nodesource.com/node_6.x {{ ansible_lsb.codename }} main"
-    - "deb-src https://deb.nodesource.com/node_6.x {{ ansible_lsb.codename }} main"
+    - "deb http://deb.nodesource.com/node_6.x {{ ansible_lsb.codename }} main"
+    - "deb-src http://deb.nodesource.com/node_6.x {{ ansible_lsb.codename }} main"
 
 - name: nodejs - install
   apt:
